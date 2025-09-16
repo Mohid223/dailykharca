@@ -1,0 +1,138 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Pocket Kharca</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pocket Kharca</h1>
+    <form id="expense-form">
+      <input type="text" id="expense-name" placeholder="Description (ex. Chai, Auto)" required />
+      <input type="number" id="expense-amount" placeholder="Amount" required />
+      <input type="date" id="expense-date" required />
+      <button type="submit">Add</button>
+    </form>
+    <div class="controls">
+      <button id="save-button">Save (Local)</button>
+      <button id="download-button">Download CSV</button>
+       <button id="whatsapp-share-button"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M20.52 3.48a11.24 11.24 0 0 0-15.98 15.98l-1.89 6.89 6.88-1.88a11.22 11.22 0 0 0 10-.01 11.24 11.24 0 0 0-.01-20.98zm-9.5 17.57c-2.29 0-4.44-.76-6.22-2.04l-.44-.32-4.13 1.13 1.11-4.03-.29-.46a9.091 9.091 0 0 1 7.97-12.88c4.99.01 9.03 4.03 9.04 9.02a8.97 8.97 0 0 1-8.44 8.58zm5.14-6.73c-.26-.13-1.52-.75-1.75-.84-.23-.10-.4-.13-.57.13-.17.26-.69.85-.85 1.02-.16.17-.33.2-.6.07-1.63-.81-2.69-1.45-3.77-3.27-.28-.48.28-.44.8-1.45.09-.18.05-.34-.02-.47-.07-.13-.57-1.37-.78-1.87-.2-.49-.4-.43-.57-.44-.15-.01-.33-.01-.51-.01s-.47.07-.71.33c-.24.26-.92.9-.92 2.19 0 1.28.94 2.51 1.07 2.68.13.17 1.85 2.82 4.49 3.95.63.27 1.12.43 1.51.55.63.19 1.21.16 1.67.10.51-.07 1.52-.62 1.73-1.22.21-.61.21-1.13.15-1.22-.06-.09-.23-.14-.49-.26z"/>
+  </svg></button>
+   <div class="menu-container">
+    <button id="menu-button">Menu &#x25BC;</button>
+    <div id="menu-dropdown" class="hidden">
+      <button id="menu-save-history">View Save History</button>
+      <button id="menu-download-history">Download History</button>
+      <div id="history-display" class="history-display"></div>
+    </div>
+  </div>
+  
+      <select id="select-date"></select>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="expense-list"></tbody>
+    </table>
+    <div class="total">
+      <strong>Total:</strong> ₹<span id="total-amount">0</span>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pocket Kharca</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand"></div>
+    <button id="navbar-menu-button" aria-haspopup="true" aria-expanded="false">
+      ☰ 
+    </button>
+    <div id="navbar-menu-dropdown" class="navbar-dropdown hidden" role="menu">
+      <button id="navbar-view-history" role="menuitem">View Save History</button>
+      <button id="navbar-download-history" role="menuitem">Download History</button>
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    <h1>Pocket Kharca</h1>
+
+    <form id="expense-form">
+      <input
+        type="text"
+        id="expense-name"
+        placeholder="Description (ex. Chai, Auto)"
+        required
+      />
+      <input
+        type="number"
+        id="expense-amount"
+        placeholder="Amount"
+        required
+      />
+      <input type="date" id="expense-date" required />
+      <button type="submit">Add</button>
+    </form>
+
+    <div class="controls">
+      <button id="save-button">Save (Local)</button>
+      <button id="download-button">Download CSV</button>
+
+      <button id="whatsapp-share-button" aria-label="Share on WhatsApp">
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          role="img"
+          focusable="false"
+        >
+          <path
+            d="M20.52 3.48a11.24 11.24 0 0 0-15.98 15.98l-1.89 6.89 6.88-1.88a11.22 11.22 0 0 0 10-.01 11.24 11.24 0 0 0-.01-20.98zm-9.5 17.57c-2.29 0-4.44-.76-6.22-2.04l-.44-.32-4.13 1.13 1.11-4.03-.29-.46a9.091 9.091 0 0 1 7.97-12.88c4.99.01 9.03 4.03 9.04 9.02a8.97 8.97 0 0 1-8.44 8.58zm5.14-6.73c-.26-.13-1.52-.75-1.75-.84-.23-.10-.4-.13-.57.13-.17.26-.69.85-.85 1.02-.16.17-.33.2-.6.07-1.63-.81-2.69-1.45-3.77-3.27-.28-.48.28-.44.8-1.45.09-.18.05-.34-.02-.47-.07-.13-.57-1.37-.78-1.87-.2-.49-.4-.43-.57-.44-.15-.01-.33-.01-.51-.01s-.47.07-.71.33c-.24.26-.92.9-.92 2.19 0 1.28.94 2.51 1.07 2.68.13.17 1.85 2.82 4.49 3.95.63.27 1.12.43 1.51.55.63.19 1.21.16 1.67.10.51-.07 1.52-.62 1.73-1.22.21-.61.21-1.13.15-1.22-.06-.09-.23-.14-.49-.26z"
+          />
+        </svg>
+      </button>
+
+      
+
+      <select id="select-date" aria-label="Select Date"></select>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="expense-list"></tbody>
+    </table>
+
+    <div class="total">
+      <strong>Total:</strong> ₹<span id="total-amount">0</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
